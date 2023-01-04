@@ -39,14 +39,12 @@ def main():
     while True:
 
         screen.fill(SCREEN_GRID)
-        Game.playing_field(screen, cells)
-
         if BUTTON_START.check_click():
             running = not running
         if BUTTON_NEXT.check_click() and not running:
-            cells = Game.nextSteps(screen, cells)
+            cells = Game.update(screen, cells)
         if BUTTON_REFRESH.check_click() and not running:
-            pass
+            cells = n.zeros(CELLS_SETTING)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -56,12 +54,11 @@ def main():
             if pygame.mouse.get_pressed()[0] and not running:
                 pos = pygame.mouse.get_pos()
                 cells[pos[1] // 10, pos[0] // 10] = 1
-                Game.playing_field(screen, cells)
 
         if running:
             cells = Game.update(screen, cells)
-        else:
-            Game.playing_field(screen, cells)
+
+        Game.playing_field(screen, cells)
 
         BUTTON_START.draw(screen)
         BUTTON_NEXT.draw(screen)

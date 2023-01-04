@@ -1,3 +1,7 @@
 from .GameAbstract import GameAbstract
+from .ButtonAbstract import  ButtonAbstract
 
-__all__ = ['GameAbstract']
+__all__ = [
+    'GameAbstract',
+    'ButtonAbstract'
+]

@@ -7,5 +7,5 @@ class GameAbstract(ABC):
         pass
 
     @abstractmethod
-    def nextSteps(self, window, cells):
+    def playing_field(self, window, cells):
         pass

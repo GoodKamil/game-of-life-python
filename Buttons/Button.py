@@ -1,9 +1,10 @@
+from Abstract import *
 import pygame
 
 pygame.init()
 
 
-class Button:
+class Button(ButtonAbstract):
     def __init__(self, image, width, height):
         self.image = image
         self.reactImage = self.image.get_rect()

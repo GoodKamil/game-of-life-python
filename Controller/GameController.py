@@ -1,4 +1,3 @@
-from abc import ABC
 import pygame
 from Config.config import *
 import numpy as nump
@@ -7,18 +6,11 @@ from Abstract import *
 
 class GameController(GameAbstract):
     def __init__(self):
-        self.__Steps = []
         self.__size = 10
-
-    def Steps(self):
-        return self.__Steps
 
     @property
     def size(self):
         return self.__size
-
-    def add_Steps(self, Steps):
-        self.__Steps.append(Steps)
 
     @size.setter
     def size(self, size):
@@ -32,15 +24,9 @@ class GameController(GameAbstract):
             if (cells[row, col] == 1 and 2 <= life <= 3) or (cells[row, col] == 0 and life == 3):
                 up_cells[row, col] = 1
                 color = COLOR_LIFE
-
             color = color if cells[row, col] == 1 else COLOR_DIE
             pygame.draw.rect(window, color, (col * self.size, row * self.size, self.size - 1, self.size - 1))
         return up_cells
-
-    def nextSteps(self, window, cells):
-        for i in range(1):
-            cells = self.update(window, cells)
-            return cells
 
     def playing_field(self, window, cells):
         for row, col in nump.ndindex(cells.shape):
